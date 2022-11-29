@@ -5,12 +5,12 @@ function PrivateRoute({ children, ...rest }) {
   const auth = useAuth();
   const location = useLocation();
 
-  // if (!auth.userAuth) {
-  //   return <Navigate to="/login" state={{ from: location }} />;
-  // }
-  if (!true) {
+  if (!auth.userAuth) {
     return <Navigate to="/login" state={{ from: location }} />;
   }
+  // if (!true) {
+  //   return <Navigate to="/login" state={{ from: location }} />;
+  // }
   return children;
 }
 

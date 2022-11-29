@@ -48,13 +48,13 @@ function Register() {
                   name="password"
                   className="password"
                   placeholder="Password"
-                  type={password ? "password" : "text"}
+                  type={password ? "text" : "password"}
                   onChange={props.handleChange}
                   onBlur={props.handleBlur}
                   value={props.values.password}
                 />
                 <span className="icon-eye" onClick={handleIconPassword}>
-                  {password ? <Icons.EyeSlash /> : <Icons.Eye />}
+                  {password ? <Icons.Eye /> : <Icons.EyeSlash />}
                 </span>
               </div>
               <div className="input">
@@ -62,13 +62,13 @@ function Register() {
                   name="passwordRepeat"
                   className="confirm-password"
                   placeholder="Confirm password"
-                  type={confirmPassword ? "password" : "text"}
+                  type={confirmPassword ? "text" : "password"}
                   onChange={props.handleChange}
                   onBlur={props.handleBlur}
                   value={props.values.passwordRepeat}
                 />
                 <span className="icon-eye" onClick={handleIconConfirmPassword}>
-                  {confirmPassword ? <Icons.EyeSlash /> : <Icons.Eye />}
+                  {confirmPassword ? <Icons.Eye /> : <Icons.EyeSlash />}
                 </span>
               </div>
               <div className="button-sign-up">

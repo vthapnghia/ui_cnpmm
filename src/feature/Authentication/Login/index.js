@@ -23,7 +23,7 @@ function Login() {
 
   return (
     <Formik
-      initialValues={{ username: " ", password: " " }}
+      initialValues={{ username: "", password: "" }}
       // validationSchema={Yup.object({
       //   username: Yup.string().required("Vui lòng nhập user name"),
       //   password: Yup.string().required("Vui lòng nhập password"),
@@ -53,13 +53,13 @@ function Login() {
                   name="password"
                   className="password"
                   placeholder="Password"
-                  type={password ? "password" : "text"}
+                  type={password ? "text" : "password"}
                   onChange={props.handleChange}
                   onBlur={props.handleBlur}
                   value={props.values.password}
                 />
                 <span className="icon-eye" onClick={handleIconPassword}>
-                  {password ? <Icons.EyeSlash /> : <Icons.Eye />}
+                  {password ? <Icons.Eye /> : <Icons.EyeSlash />}
                 </span>
               </div>
               <div className="forgot-password">

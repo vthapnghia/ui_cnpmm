@@ -6,18 +6,18 @@ import NotFound from "./component/NotFound";
 import PATH from "./contants/path";
 import Login from "./feature/Authentication/Login";
 import Register from "./feature/Authentication/Register";
-import Home from "./feature/page/Home";
 import ImageDetail from "./feature/User/pages/ImageDetail";
 import PrivateRoute from "./component/PrivateRoute";
 import { useAuth } from "./until/hook";
 import Profile from "./feature/User/pages/Profile";
+import Home from "./feature/User/pages/Home";
 
 function App() {
   const { userAuth } = useAuth();
   return (
     <div className="App">
-      {/* {userAuth ? <Navbar /> : <></>} */}
-      {true ? <Navbar /> : <></>}
+      {userAuth ? <Navbar /> : <></>}
+      {/* {true ? <Navbar /> : <></>} */}
       <Routes>
         <Route path={PATH.BASE} element={<Login />} />
         <Route path={PATH.LOGIN} element={<Login />} />
