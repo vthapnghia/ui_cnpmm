@@ -1,0 +1,63 @@
+#profile {
+  min-height: 100vh;
+  background-image: url("../../../../public/bg.jpg");
+  background-size: cover;
+  padding: 50px 0;
+
+  .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    .back {
+      height: max-content;
+      width: max-content;
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
+    .use-img {
+      border-radius: 100%;
+      object-fit: cover;
+      margin-top: 50px;
+    }
+
+    .input {
+      position: relative;
+      width: max-content;
+      margin: 10px;
+      input {
+        height: 50px;
+        width: 300px;
+        border: 1px solid rgba($color: white, $alpha: 0.5);
+        outline: none;
+        border-radius: 10px;
+        padding: 2px 30px;
+        background: transparent;
+
+        &:hover {
+          background: rgba($color: #f5f3f3, $alpha: 0.3);
+          border: 1px solid rgba($color: white, $alpha: 1);
+        }
+      }
+
+      .icon-eye {
+        position: absolute;
+        top: 50%;
+        right: 10px;
+        transform: translate(0, -50%);
+      }
+    }
+
+    .btn-update {
+        button {
+          width: 300px;
+          height: 50px;
+          border-radius: 10px;
+          border: none;
+          background-color: #fbceb5;
+          font-weight: 600;
+        }
+      }
+  }
+}

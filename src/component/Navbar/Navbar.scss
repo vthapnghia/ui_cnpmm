@@ -1,0 +1,39 @@
+#navbar {
+  
+  background-color: transparent;
+  display: flex;
+  align-items: center;
+  position: relative;
+  padding: 20px;
+  position: fixed;
+  top: 0;
+  right: 50px;
+  transition: all 1s;
+  z-index: 10;
+
+  .dropdown {
+    background-color: white;
+    max-width: 200px;
+    border-radius: 8px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    .dropdown-toggle {
+      border: none;
+      box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+      border-radius: 8px;
+
+      &::after {
+        display: none;
+      }
+    }
+  }
+  .dropdown-item:hover {
+    background-color: #95a5a6;
+  }
+  cursor: pointer;
+  .admin-img {
+    width: 40px;
+    height: 40px;
+    border-radius: 100%;
+    margin-right: 20px;
+  }
+}
