@@ -3,20 +3,23 @@ import { doRequest } from "../until/common";
 import { KEY_STORAGE } from "../until/global";
 
 const userAPI = {
-  
   login: (data) => {
     const url = API_URL.USER.LOGIN;
-    const headers = { "Content-Type": "application/json"  };
+    const headers = { "Content-Type": "application/json" };
     return doRequest("post", url, data, headers);
   },
   register: (data) => {
     const url = API_URL.USER.REGISTER;
-    const headers = { "Content-Type": "application/json"  };
+    const headers = { "Content-Type": "application/json" };
     return doRequest("post", url, data, headers);
   },
   firstLogin: (data) => {
     let formData = new FormData();
-    const headers={ "Content-Type": "multipart/form-data", "Authorization": `Bearer ${localStorage.getItem(KEY_STORAGE.ACCESS_TOKEN)}`  };
+    const token = localStorage.getItem(KEY_STORAGE.ACCESS_TOKEN);
+    const headers = {
+      "Content-Type": "multipart/form-data",
+      Authorization: `Bearer ${token}`,
+    };
     formData.append("avatar", data.avatar);
     formData.append("name", data.name);
     formData.append("age", data.age);
@@ -29,7 +32,11 @@ const userAPI = {
 
   updateProfile: (data) => {
     let formData = new FormData();
-    const headers={ "Content-Type": "multipart/form-data", "Authorization": `Bearer ${localStorage.getItem(KEY_STORAGE.ACCESS_TOKEN)}`  };
+    const token = localStorage.getItem(KEY_STORAGE.ACCESS_TOKEN);
+    const headers = {
+      "Content-Type": "multipart/form-data",
+      Authorization: `Bearer ${token}`,
+    };
     formData.append("avatar", data.avatar);
     formData.append("name", data.name);
     formData.append("age", data.age);
@@ -40,9 +47,15 @@ const userAPI = {
     return doRequest("put", url, formData, headers);
   },
   getUser: (data) => {
-    const headers={ "Content-Type": "application/json", "Authorization": `Bearer ${localStorage.getItem(KEY_STORAGE.ACCESS_TOKEN)}`  };
+    const token = localStorage.getItem(KEY_STORAGE.ACCESS_TOKEN);
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": `Bearer ${token}`,
+      },
+    };
     const url = API_URL.USER.UPDATE_PROFILE;
-    return doRequest("get", url, headers);
+    return doRequest("get", url, "",config);
   },
 };
 
