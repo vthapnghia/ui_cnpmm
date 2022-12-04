@@ -9,8 +9,8 @@ function Navbar() {
   const dispath = useDispatch();
   const navigate = useNavigate();
 
-  const handleLogout = useCallback(() => {
-    dispath(logout()).then((res) => {
+  const handleLogout = useCallback(async () => {
+    await dispath(logout()).then((res) => {
       navigate(PATH.LOGIN);
     });
   }, [dispath, navigate]);

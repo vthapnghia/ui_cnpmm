@@ -2,7 +2,7 @@ const API_URL = {
   USER: {
     LOGIN: "v1/login",
     REGISTER: "v1/login/register",
-    FIRST_LOIGN: "v1/user",
+    FIRST_LOIGN: "v1/user/",
     UPDATE_PROFILE: "v1/user",
     GET_USER: "v1/user",
   },

@@ -41,7 +41,7 @@ function Video() {
                 <button
                   className="btn-detail"
                   onClick={() =>
-                    navigate(PATH.VIDEO.Vi.replace(":id", item?._id))
+                    navigate(PATH.VIDEO.EDIT_VIDEO.replace(":id", item?._id))
                   }
                 >
                   Chi tiết

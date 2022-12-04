@@ -31,8 +31,10 @@
   }
 
   .icon-eye {
-    position: fixed;
+    position: absolute;
     top: 38%;
+    right: 10px;
+    transform: translate(0, -50%);
   }
   input {
     width: 100%;

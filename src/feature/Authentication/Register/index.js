@@ -94,7 +94,7 @@ function Register() {
               </div>
               <div className="button-sign-up">
                 <button onClick={() => formikRef.current.submitForm()}>
-                  Đăng nhập
+                  Đăng ký
                 </button>
               </div>
               <div className="log-in">

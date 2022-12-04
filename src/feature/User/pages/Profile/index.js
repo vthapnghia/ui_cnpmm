@@ -14,15 +14,12 @@ function Profile() {
   const user = useSelector((state) => state.profile?.user);
 
   const handleUpdate = useCallback((values) => {
-    // console.log(values);
-    if (user?._id === "") {
-      console.log(1);
+    if (user === null) {
       dispatch(firstLogin(values));
     } else {
-      console.log(2);
       dispatch(updateProfile(values));
     }
-  }, [dispatch, user?._id]);
+  }, [dispatch, user]);
 
   useEffect(() => {
     dispatch(getUser());

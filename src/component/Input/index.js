@@ -8,9 +8,8 @@ import "./Input.scss";
 function Input({ type, className, disabled, hidden, placeholder, ...props }) {
   const [password, setEye] = useState(false);
   const [field, meta, helpers] = useField(props);
-  const [temp, setTemp] = useState(field.value ?? "");
+  const [temp, setTemp] = useState(field.value ?? "bg.jpg");
   const { setFieldValue, values } = useFormikContext();
-  const [urlImg, setUrlImg] = useState(values);
 
   const handleIconPassword = useCallback(() => {
     setEye(!password);
