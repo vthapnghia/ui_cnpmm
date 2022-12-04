@@ -14,8 +14,6 @@ function Video() {
     dispatch(getVideo());
   }, [dispatch]);
 
-  console.log(video);
-
   return (
     <div className="home" id="home">
       <div className="container d-flex flex-column">

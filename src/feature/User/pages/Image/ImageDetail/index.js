@@ -15,8 +15,6 @@ function ImageDetail() {
   const imgById = useSelector((state) => state.image?.imgById);
   const navigate = useNavigate();
 
-  const handleUpload = (e) => {};
-
   const handleEdit = () => {
     setAction(2);
     formikRef.current.submitForm();
@@ -32,16 +30,16 @@ function ImageDetail() {
   };
 
   const handleAction = useCallback(
-    (values) => {
+    async (values) => {
       if (action === 1) {
       } else {
         if (action === 2) {
-          dispatch(editImage({ data: values, id: id })).then((res) => {
+          await dispatch(editImage({ data: values, id: id })).then((res) => {
             dispatch(getImageByID(id));
           });
         } else {
-          dispatch(removeImage(id)).then((res) => {
-            if (res.payload.staus === 200) {
+          await dispatch(removeImage(id)).then((res) => {
+            if (res.payload?.status === 200) {
               navigate(PATH.IMAGE.BASE);
             }
           });
@@ -59,50 +57,58 @@ function ImageDetail() {
 
   return (
     <Formik
-      initialValues={{ image: "", description: imgById?.description }}
+      initialValues={{ image: imgById?.url, description: imgById?.description }}
       innerRef={formikRef}
       enableReinitialize
       onSubmit={handleAction}
     >
-      {(props) => (
-        <div className="img-detail" id="img-detail">
-          <div className="container ">
-            <div className="row">
-              <div className="col col-md-6 col-sm-12 ">
-                <div className="img">
-                  <Input name="image" type="file" className="img-upload" style={{width: "100%", height: "100%"}}/>
-                </div>
-                
+      <div className="img-detail" id="img-detail">
+        <div className="container ">
+          <div className="row">
+            <div className="col col-md-6 col-sm-12 ">
+              <div className="img">
+                <Input
+                  name="image"
+                  type="file"
+                  className="img-upload"
+                  style={{ width: "100%", height: "100%" }}
+                  label="Tải ảnh lên"
+                />
               </div>
-              <div className="col col-md-6 col-sm-12">
-                <div className="input">
-                  <Input name="description" className="description" placeholder="Mô tả" type="textarea"/>
-                </div>
-                {id ? (
-                  <>
-                    <div className="input">
-                      <input
-                        className="update-date"
-                        placeholder="Ngày tải lên"
-                        disabled
-                        value={imgById?.created_date}
-                      />
-                    </div>
-                    <div className="btn-img">
-                      <button onClick={handleEdit}>Chỉnh sửa</button>
-                      <button onClick={handleRemove}>Xóa</button>
-                    </div>
-                  </>
-                ) : (
-                  <div className="btn-img">
-                    <button onClick={handleSave}>Save</button>
+            </div>
+            <div className="col col-md-6 col-sm-12">
+              <div className="input">
+                <Input
+                  name="description"
+                  className="description"
+                  placeholder="Mô tả"
+                  type="textarea"
+                />
+              </div>
+              {id ? (
+                <>
+                  <div className="input">
+                    <input
+                      className="update-date"
+                      placeholder="Ngày tải lên"
+                      disabled
+                      value={imgById?.created_date}
+                    />
                   </div>
-                )}
-              </div>
+                  <div className="btn-img">
+                    <button onClick={handleEdit}>Chỉnh sửa</button>
+                    <button onClick={handleRemove}>Xóa</button>
+                  </div>
+                </>
+              ) : (
+                <div className="btn-img">
+                  <button onClick={handleSave}>Save</button>
+                </div>
+              )}
             </div>
           </div>
         </div>
-      )}
+      </div>
     </Formik>
   );
 }

@@ -9,7 +9,12 @@
     object-fit: cover;
     border: 1px solid #f5f3f3;
     object-fit: cover;
-    border-radius: 100%;
+  }
+
+  .video {
+    border-radius: 10px;
+    width: 100%;
+    height: auto;
   }
 
   .label-img {
@@ -20,6 +25,7 @@
     border-radius: 0.3rem;
     cursor: pointer;
     margin-top: 1rem;
+    text-align: center;
   }
   input {
     height: 50px;
@@ -30,7 +36,7 @@
     }
   }
 
-  textarea{
+  textarea {
     height: 150px;
   }
 
@@ -40,7 +46,8 @@
     right: 10px;
     transform: translate(0, -50%);
   }
-  input, textarea {
+  input,
+  textarea {
     width: 100%;
     border: 1px solid rgba($color: white, $alpha: 0.5);
     outline: none;

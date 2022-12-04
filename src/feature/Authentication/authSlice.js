@@ -44,7 +44,6 @@ const authSlice = createSlice({
     [login.fulfilled]: (state, action) => {
       const res = action.payload.data;
       state.user = res?.user;
-      state.isAuth = true;
       localStorage.setItem(KEY_STORAGE.ACCESS_TOKEN, res?.token);
       storeJsonObject(KEY_STORAGE.CP_USER, res?.user);
     },

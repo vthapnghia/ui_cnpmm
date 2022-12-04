@@ -1,38 +1,41 @@
 import "bootstrap/dist/css/bootstrap.min.css";
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, useLocation } from "react-router-dom";
 import "./App.scss";
 import Navbar from "./component/Navbar";
-import NotFound from "./component/NotFound";
 import PATH from "./contants/path";
 import Login from "./feature/Authentication/Login";
 import Register from "./feature/Authentication/Register";
 import PrivateRoute from "./component/PrivateRoute";
+import Notfound from "./component/NotFound";
 import { useAuth } from "./until/hook";
-import Profile from "./feature/User/pages/Profile";
 import Spinner from "./component/Spinner";
-import Image from "./feature/User/pages/Image";
-import ImageDetail from "./feature/User/pages/Image/ImageDetail";
-import Video from "./feature/User/pages/Video";
-import VideoDetail from "./feature/User/pages/Video/videoDetail";
+import router from "./router";
+import User from "./feature/User";
 
 function App() {
   const { userAuth } = useAuth();
+  const {pathname} = useLocation();
   return (
     <div className="App">
-       {userAuth ? <Navbar /> : <></>}
       <Routes>
         <Route path={PATH.BASE} element={<Login />} />
         <Route path={PATH.LOGIN} element={<Login />} />
         <Route path={PATH.REGISTER} element={<Register />} />
-        <Route path={PATH.IMAGE.BASE} element={ <PrivateRoute> <Image /> </PrivateRoute> } />
-        <Route path={PATH.INFO} element={ <PrivateRoute> <Profile /> </PrivateRoute>  } />
-        <Route path={PATH.IMAGE.ADD_IMAGE} element={ <PrivateRoute> <ImageDetail /> </PrivateRoute> } />
-        <Route path={PATH.IMAGE.EDIT_IMAGE} element={ <PrivateRoute>  <ImageDetail /> </PrivateRoute> } />
-        <Route path={PATH.VIDEO.BASE} element={ <PrivateRoute> <Video /> </PrivateRoute> } />
-        <Route path={PATH.VIDEO.EDIT_VIDEO} element={ <PrivateRoute>  <VideoDetail /> </PrivateRoute> } />
-        <Route path={PATH.NOT_FOUND} element={<NotFound />} />
+        {router.map((route, index) => (
+          <Route
+            key={index}
+            path={route.path}
+            element={
+              <PrivateRoute>
+                <User component={route.component} />{" "}
+              </PrivateRoute>
+            }
+          />
+        ))}
+        <Route path={PATH.NOT_FOUND} element={<Notfound />} />
       </Routes>
-      <Spinner/>
+      {/* {userAuth && pathname === PATH.NOT_FOUND ? <Navbar /> : <></>} */}
+      <Spinner />
     </div>
   );
 }

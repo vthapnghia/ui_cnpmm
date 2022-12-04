@@ -17,7 +17,7 @@ const editVideo = createAsyncThunk(
   "EDIT_VIDEO",
   async (param, { rejectWithValue }) => {
     try {
-      const res = "";
+      const res = videoAPI.editVideo(param);
       return res;
     } catch (error) {
       rejectWithValue(error);

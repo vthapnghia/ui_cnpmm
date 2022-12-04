@@ -12,6 +12,7 @@ function Input({
   hidden,
   placeholder,
   style,
+  label,
   ...props
 }) {
   const [password, setEye] = useState(false);
@@ -195,10 +196,10 @@ function Input({
             hidden
           />
           <label htmlFor="file" className="label-img">
-            Tải ảnh lên
+            {label}
           </label>
         </div>
-      ) : (
+      ) : type === "textarea" ? (
         <textarea
           {...props}
           {...field}
@@ -209,6 +210,33 @@ function Input({
           style={style}
           disabled={disabled}
         />
+      ) : (
+        <div style={{ display: "flex", flexDirection: "column" }}>
+          <video controls className="video">
+            <source src={temp} />
+          </video>
+
+          <input
+            id="file"
+            type="file"
+            onChange={(e) => {
+              const fileReader = new FileReader();
+              fileReader.onload = () => {
+                if (fileReader.readyState === 2) {
+                  setTemp(fileReader.result);
+                }
+              };
+              fileReader.readAsDataURL(e.target.files[0]);
+              setFieldValue(props.name, e.target.files[0]);
+            }}
+            className={className}
+            style={style}
+            hidden
+          />
+          <label htmlFor="file" className="label-img">
+            {label}
+          </label>
+        </div>
       )}
       {meta.error && meta.touched ? (
         <div className="message-error">{meta.error}</div>
