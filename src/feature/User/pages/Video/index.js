@@ -5,8 +5,6 @@ import PATH from "../../../../contants/path";
 import "./Video.scss";
 import { getVideo } from "./videoDetail/videoSlice";
 
-const arr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
-
 function Video() {
   const navigate = useNavigate();
   const dispatch = useDispatch();

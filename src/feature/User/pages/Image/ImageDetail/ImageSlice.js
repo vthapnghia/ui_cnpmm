@@ -17,7 +17,7 @@ const editImage = createAsyncThunk(
   "EDIT_IMAGE",
   async (param, { rejectWithValue }) => {
     try {
-      const res = "";
+      const res = imageAPI.editImage(param);
       return res;
     } catch (error) {
       rejectWithValue(error);

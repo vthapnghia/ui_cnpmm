@@ -1,14 +1,11 @@
 import { Formik } from "formik";
 import { useCallback, useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
-import Icons from "../../../../component/Icons";
 import Input from "../../../../component/Input";
 import "./Profile.scss";
 import { firstLogin, getUser, updateProfile } from "./profileSlice";
 
 function Profile() {
-  const navigate = useNavigate();
   const formikRef = useRef();
   const dispatch = useDispatch();
   const user = useSelector((state) => state.profile?.user);

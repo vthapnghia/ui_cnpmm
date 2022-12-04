@@ -30,13 +30,17 @@
     }
   }
 
+  textarea{
+    height: 150px;
+  }
+
   .icon-eye {
     position: absolute;
     top: 38%;
     right: 10px;
     transform: translate(0, -50%);
   }
-  input {
+  input, textarea {
     width: 100%;
     border: 1px solid rgba($color: white, $alpha: 0.5);
     outline: none;

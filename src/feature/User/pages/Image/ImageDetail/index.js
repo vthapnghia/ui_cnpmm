@@ -1,13 +1,13 @@
 import { Formik } from "formik";
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
+import Input from "../../../../../component/Input";
 import PATH from "../../../../../contants/path";
 import "./ImageDetail.scss";
-import { getImageByID, removeImage } from "./ImageSlice";
+import { editImage, getImageByID, removeImage } from "./ImageSlice";
 
 function ImageDetail() {
-  const [selectedFile, setSelectedFile] = useState(null);
   const { id } = useParams();
   const [action, setAction] = useState(1);
   const formikRef = useRef();
@@ -15,10 +15,7 @@ function ImageDetail() {
   const imgById = useSelector((state) => state.image?.imgById);
   const navigate = useNavigate();
 
-  const handleUpload = (e) => {
-    // props.handleChange();
-    setSelectedFile(URL.createObjectURL(e.target.files[0]));
-  };
+  const handleUpload = (e) => {};
 
   const handleEdit = () => {
     setAction(2);
@@ -34,19 +31,25 @@ function ImageDetail() {
     formikRef.current.submitForm();
   };
 
-  const handleAction = (values) => {
-    if (action === 1) {
-    } else {
-      if (action === 2) {
+  const handleAction = useCallback(
+    (values) => {
+      if (action === 1) {
       } else {
-        dispatch(removeImage(id)).then((res) => {
-          if (res.payload.staus === 200) {
-            navigate(PATH.IMAGE.BASE);
-          }
-        });
+        if (action === 2) {
+          dispatch(editImage({ data: values, id: id })).then((res) => {
+            dispatch(getImageByID(id));
+          });
+        } else {
+          dispatch(removeImage(id)).then((res) => {
+            if (res.payload.staus === 200) {
+              navigate(PATH.IMAGE.BASE);
+            }
+          });
+        }
       }
-    }
-  };
+    },
+    [dispatch, action, id, navigate]
+  );
 
   useEffect(() => {
     if (id) {
@@ -56,7 +59,7 @@ function ImageDetail() {
 
   return (
     <Formik
-      initialValues={{ img_upload: "", description: imgById?.description }}
+      initialValues={{ image: "", description: imgById?.description }}
       innerRef={formikRef}
       enableReinitialize
       onSubmit={handleAction}
@@ -65,41 +68,15 @@ function ImageDetail() {
         <div className="img-detail" id="img-detail">
           <div className="container ">
             <div className="row">
-              <div className="col col-md-6 col-sm-12">
-                <img
-                  className="image"
-                  src={imgById?.url}
-                  alt=""
-                  onLoad={(event) =>
-                    (event.target.style.display = "inline-block")
-                  }
-                />
-                <input
-                  name="img_upload"
-                  className="img-upload"
-                  id="actual-btn"
-                  type="file"
-                  onChange={handleUpload}
-                  hidden
-                />
-                <label
-                  className="label-upload"
-                  htmlFor="actual-btn"
-                  id="actual-btn"
-                >
-                  Choose File
-                </label>
+              <div className="col col-md-6 col-sm-12 ">
+                <div className="img">
+                  <Input name="image" type="file" className="img-upload" style={{width: "100%", height: "100%"}}/>
+                </div>
+                
               </div>
               <div className="col col-md-6 col-sm-12">
                 <div className="input">
-                  <textarea
-                    name="description"
-                    className="description"
-                    placeholder="Mô tả"
-                    onChange={props.handleChange}
-                    onBlur={props.handleBlur}
-                    value={props.values.description}
-                  />
+                  <Input name="description" className="description" placeholder="Mô tả" type="textarea"/>
                 </div>
                 {id ? (
                   <>

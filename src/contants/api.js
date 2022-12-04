@@ -10,13 +10,13 @@ const API_URL = {
     GET_ALL_IMAGE: "v1/images",
     GET_IMAGE_BY_ID: "v1/images/:id",
     DELETE_IMAGE: "v1/images/:id",
-    EDIT_IMAGE: "",
+    EDIT_IMAGE: "v1/images/:id",
   },
   VIDEO: {
     GET_ALL_VIDEO: "v1/videos",
     GET_VIDEO_BY_ID: "v1/videos/:id",
     DELETE_VIDEO: "v1/videos/:id",
-    EDIT_VIDEO: "",
+    EDIT_VIDEO: "v1/videos/:id",
   },
 };
 

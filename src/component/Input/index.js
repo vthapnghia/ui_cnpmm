@@ -1,15 +1,23 @@
-import { Field, useField, useFormikContext } from "formik";
+import { useField, useFormikContext } from "formik";
 import { useCallback, useEffect, useState } from "react";
 import ReactSelect from "react-select";
 import { GENDER } from "../../until/global";
 import Icons from "../Icons";
 import "./Input.scss";
 
-function Input({ type, className, disabled, hidden, placeholder, ...props }) {
+function Input({
+  type,
+  className,
+  disabled,
+  hidden,
+  placeholder,
+  style,
+  ...props
+}) {
   const [password, setEye] = useState(false);
   const [field, meta, helpers] = useField(props);
   const [temp, setTemp] = useState(field.value ?? "bg.jpg");
-  const { setFieldValue, values } = useFormikContext();
+  const { setFieldValue } = useFormikContext();
 
   const handleIconPassword = useCallback(() => {
     setEye(!password);
@@ -108,6 +116,7 @@ function Input({ type, className, disabled, hidden, placeholder, ...props }) {
             type={password ? "text" : "password"}
             disabled={disabled}
             value={temp}
+            style={style}
             placeholder={placeholder}
           />
           <span className="icon-eye" onClick={handleIconPassword}>
@@ -125,6 +134,7 @@ function Input({ type, className, disabled, hidden, placeholder, ...props }) {
           type={type}
           disabled={disabled}
           value={temp}
+          style={style}
         />
       ) : type === "select" ? (
         <ReactSelect
@@ -143,6 +153,7 @@ function Input({ type, className, disabled, hidden, placeholder, ...props }) {
           placeholder={placeholder}
           placement="auto"
           isDisabled={props.disabled}
+          style={style}
         />
       ) : type === "number" ? (
         <input
@@ -155,8 +166,9 @@ function Input({ type, className, disabled, hidden, placeholder, ...props }) {
           type="number"
           disabled={disabled}
           value={temp}
+          style={style}
         />
-      ) : (
+      ) : type === "file" ? (
         <div style={{ display: "flex", flexDirection: "column" }}>
           <img
             src={temp}
@@ -168,7 +180,6 @@ function Input({ type, className, disabled, hidden, placeholder, ...props }) {
           <input
             id="file"
             type="file"
-            name="avatar"
             onChange={(e) => {
               const fileReader = new FileReader();
               fileReader.onload = () => {
@@ -177,16 +188,27 @@ function Input({ type, className, disabled, hidden, placeholder, ...props }) {
                 }
               };
               fileReader.readAsDataURL(e.target.files[0]);
-              setFieldValue("avatar",e.target.files[0]);
+              setFieldValue(props.name, e.target.files[0]);
             }}
             className={className}
-           
+            style={style}
             hidden
           />
           <label htmlFor="file" className="label-img">
             Tải ảnh lên
           </label>
         </div>
+      ) : (
+        <textarea
+          {...props}
+          {...field}
+          value={temp}
+          className={`${className} ${
+            meta.error && meta.touched ? "error" : ""
+          } `}
+          style={style}
+          disabled={disabled}
+        />
       )}
       {meta.error && meta.touched ? (
         <div className="message-error">{meta.error}</div>

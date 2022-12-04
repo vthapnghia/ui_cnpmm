@@ -1,21 +1,17 @@
 import { Formik } from "formik";
-import { useCallback, useRef, useState } from "react";
+import { useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
+import Input from "../../../component/Input";
 import * as Yup from "yup";
-import Icons from "../../../component/Icons";
 import PATH from "../../../contants/path";
 import "./Login.scss";
 import { login } from "../authSlice";
+
 function Login() {
-  const [password, setEye] = useState(false);
   const navigate = useNavigate();
   const formikRef = useRef(null);
   const dispatch = useDispatch();
-
-  const handleIconPassword = useCallback(() => {
-    setEye(!password);
-  }, [password]);
 
   const handleLogin = (values) => {
     dispatch(login(values)).then((res) => {
@@ -47,35 +43,11 @@ function Login() {
             <h1>Đăng nhập</h1>
             <div className="form-input d-flex flex-column align-items-center">
               <div className="input">
-                <input
-                  name="username"
-                  className={`username ${props.errors.username ? "error" : ""}`}
-                  placeholder="User name"
-                  onChange={props.handleChange}
-                  onBlur={props.handleBlur}
-                  value={props.values.username}
-                />
-                {props.errors.username && (
-                  <div className="message-error">{props.errors.username}</div>
-                )}
+                <Input name="username" type="text" placeholder="User name" />
               </div>
 
               <div className="input">
-                <input
-                  name="password"
-                  className={`password ${props.errors.username ? "error" : ""}`}
-                  placeholder="Password"
-                  type={password ? "text" : "password"}
-                  onChange={props.handleChange}
-                  onBlur={props.handleBlur}
-                  value={props.values.password}
-                />
-                <span className="icon-eye" onClick={handleIconPassword}>
-                  {password ? <Icons.Eye /> : <Icons.EyeSlash />}
-                </span>
-                {props.errors.password && (
-                  <div className="message-error">{props.errors.password}</div>
-                )}
+                <Input name="password" type="password" placeholder="Password" />
               </div>
               {/* <div className="forgot-password">
                 <Link to="/aa">Quên mật khẩu</Link>

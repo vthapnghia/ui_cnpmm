@@ -9,10 +9,11 @@ const imageAPI = {
     const url = API_URL;
     return axiosClient.push(url, data);
   },
-  editImage: (data) => {
+  editImage: (param) => {
+    const {data, id} = param;
     const token = localStorage.getItem(KEY_STORAGE.ACCESS_TOKEN);
     const config = { headers :{ "Content-Type": "multipart/form-data", "Authorization": `Bearer ${token}`  }};
-    const url = API_URL;
+    const url = API_URL.IMAGE.EDIT_IMAGE.replace(":id", id);
     return axiosClient.put("put",url,data, config);
   },
   removeImage: (data) => {
