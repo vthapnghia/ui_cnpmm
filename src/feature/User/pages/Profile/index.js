@@ -1,12 +1,9 @@
-import axios from "axios";
 import { Formik } from "formik";
-import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { useCallback, useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import * as Yup from "yup";
 import Icons from "../../../../component/Icons";
 import Input from "../../../../component/Input";
-import { KEY_STORAGE } from "../../../../until/global";
 import "./Profile.scss";
 import { firstLogin, getUser, updateProfile } from "./profileSlice";
 
@@ -18,7 +15,7 @@ function Profile() {
 
   const handleUpdate = useCallback((values) => {
     // console.log(values);
-    if (user?._id === null) {
+    if (user?._id === "") {
       console.log(1);
       dispatch(firstLogin(values));
     } else {

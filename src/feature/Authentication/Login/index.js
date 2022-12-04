@@ -22,7 +22,7 @@ function Login() {
       const response = res.payload;
       if (response.status === 200) {
         if (response.data.user._id) {
-          navigate(PATH.HOME);
+          navigate(PATH.IMAGE.BASE);
         } else {
           navigate(PATH.INFO);
         }

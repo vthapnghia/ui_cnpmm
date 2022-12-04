@@ -13,10 +13,22 @@ function Navbar() {
     dispath(logout()).then((res) => {
       navigate(PATH.LOGIN);
     });
-  }, [dispath,navigate]);
-  
+  }, [dispath, navigate]);
+
   return (
     <div className="navbar" id="navbar">
+      <div className="custom-navbar-nav">
+        <div>
+          <Link className="nav-link" to={PATH.IMAGE.BASE}>
+            Hình ảnh
+          </Link>
+        </div>
+        <div>
+          <Link className="nav-link" to={PATH.VIDEO.BASE}>
+            Video
+          </Link>
+        </div>
+      </div>
       <Dropdown>
         <Dropdown.Toggle variant="" id="dropdown-basic">
           <img

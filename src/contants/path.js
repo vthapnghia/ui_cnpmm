@@ -6,9 +6,13 @@ const PATH = {
   BASE: "/",
   INFO: "/info",
   IMAGE: {
+    BASE: "/image",
     ADD_IMAGE: "/add-image",
     EDIT_IMAGE: "/image/:id",
   },
+  VIDEO: {
+    BASE: "/video",
+  }
 };
 
 export default PATH;

@@ -1,21 +1,33 @@
 #navbar {
   
-  background-color: transparent;
+  background-color: #ffff;
   display: flex;
   align-items: center;
   position: relative;
   padding: 20px;
   position: fixed;
   top: 0;
-  right: 50px;
+  // right: 50px;
   transition: all 1s;
   z-index: 10;
+  width: 100%;
+
+
+  .custom-navbar-nav{
+    display: flex;
+    flex-direction: row;
+    div{
+      width: max-content;
+      margin: 10px;
+    }
+  }
 
   .dropdown {
     background-color: white;
     max-width: 200px;
     border-radius: 8px;
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+   
     .dropdown-toggle {
       border: none;
       box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;

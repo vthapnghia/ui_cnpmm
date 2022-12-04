@@ -6,12 +6,12 @@ import NotFound from "./component/NotFound";
 import PATH from "./contants/path";
 import Login from "./feature/Authentication/Login";
 import Register from "./feature/Authentication/Register";
-import ImageDetail from "./feature/User/pages/ImageDetail";
 import PrivateRoute from "./component/PrivateRoute";
 import { useAuth } from "./until/hook";
 import Profile from "./feature/User/pages/Profile";
-import Home from "./feature/User/pages/Home";
 import Spinner from "./component/Spinner";
+import Image from "./feature/User/pages/Image";
+import ImageDetail from "./feature/User/pages/Image/ImageDetail";
 
 function App() {
   const { userAuth } = useAuth();
@@ -23,10 +23,10 @@ function App() {
         <Route path={PATH.LOGIN} element={<Login />} />
         <Route path={PATH.REGISTER} element={<Register />} />
         <Route
-          path={PATH.HOME}
+          path={PATH.IMAGE.BASE}
           element={
             <PrivateRoute>
-              <Home />
+              <Image />
             </PrivateRoute>
           }
         />

@@ -1,16 +1,18 @@
 import { Formik } from "formik";
-import { useEffect, useMemo, useRef, useState } from "react";
+import {  useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import "./ImageDetail.scss";
-import { getImage } from "./ImageSlice";
+import { getImageByID } from "./ImageSlice";
 
 function ImageDetail() {
   const [selectedFile, setSelectedFile] = useState(null);
   const { id } = useParams();
   const [action, setAction] = useState(1);
   const formikRef = useRef();
-  const dispath = useDispatch();
+  const dispatch = useDispatch();
+  const imgById = useSelector(state => state.image?.imgById);
+
   const handleUpload = (e) => {
     // props.handleChange();
     setSelectedFile(URL.createObjectURL(e.target.files[0]));
@@ -35,14 +37,22 @@ function ImageDetail() {
     } else {
       if (action === 2) {
       } else {
+        dispatch();
       }
     }
   };
 
+  useEffect(() => {
+    if(id){
+      dispatch(getImageByID(id)).then(res => console.log(res));
+    }
+  }, [id, dispatch])
+
   return (
     <Formik
-      initialValues={{ img_upload: "", description: "" }}
+      initialValues={{ img_upload: "", description: imgById?.description }}
       innerRef={formikRef}
+      enableReinitialize
       onSubmit={handleAction}
     >
       {(props) => (
@@ -52,7 +62,7 @@ function ImageDetail() {
               <div className="col col-md-6 col-sm-12">
                 <img
                   className="image"
-                  src={selectedFile}
+                  src={imgById?.url}
                   alt=""
                   onLoad={(event) =>
                     (event.target.style.display = "inline-block")
@@ -77,7 +87,7 @@ function ImageDetail() {
               <div className="col col-md-6 col-sm-12">
                 <div className="input">
                   <textarea
-                    name="decription"
+                    name="description"
                     className="description"
                     placeholder="Mô tả"
                   />
@@ -89,6 +99,7 @@ function ImageDetail() {
                         className="update-date"
                         placeholder="Ngày tải lên"
                         disabled
+                        value={imgById?.created_date}
                       />
                     </div>
                     <div className="btn-img">

@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import PATH from "../../contants/path";
 import "./NotFound.scss";
 
 function NotFound() {
@@ -10,7 +11,7 @@ function NotFound() {
             4<span>0</span>4
           </h1>
         </div>
-        <Link to="/home">home page</Link>
+        <Link to={PATH.IMAGE.BASE}>home page</Link>
       </div>
     </div>
   );

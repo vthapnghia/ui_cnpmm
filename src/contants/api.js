@@ -7,7 +7,8 @@ const API_URL = {
     GET_USER: "v1/user"
   },
   IMAGE: {
-    GET_IMAGE: "/v1/images?page=1&pageSize=2",
+    GET_ALL_IMAGE: "v1/images",
+    GET_IMAGE_BY_ID: "v1/images/:id",
     DELETE_IMAGE: "v1/images/:id",
     EDIT_IAMGE: ""
   },

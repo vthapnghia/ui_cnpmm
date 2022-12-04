@@ -5,7 +5,7 @@ const token = localStorage.getItem(KEY_STORAGE.ACCESS_TOKEN);
 
 const axiosClient = axios.create({
   baseURL: "http://localhost:8000/",
-  headers: { "Content-Type": "application/json", "Authorization": `Bearer ${token}`  },
+  // headers: { "Content-Type-1": "multipart/form-data", "Authorization": `Bearer ${token}`  },
 });
 
 // Add a request interceptor
