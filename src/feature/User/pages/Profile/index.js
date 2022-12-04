@@ -45,9 +45,9 @@ function Profile() {
     >
       <div className="profile" id="profile">
         <div className="container">
-          <div className="back" onClick={() => navigate(-1)}>
+          {/* <div className="back" onClick={() => navigate(-1)}>
             <Icons.ArrowLeft width={20} height={20} color="#000" />
-          </div>
+          </div> */}
           <div className="avatar">
             <Input name="avatar" type="file" />
           </div>

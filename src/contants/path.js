@@ -12,6 +12,8 @@ const PATH = {
   },
   VIDEO: {
     BASE: "/video",
+    ADD_VIDEO: "/add-video",
+    EDIT_VIDEO: "/video/:id",
   }
 };
 

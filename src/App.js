@@ -12,6 +12,8 @@ import Profile from "./feature/User/pages/Profile";
 import Spinner from "./component/Spinner";
 import Image from "./feature/User/pages/Image";
 import ImageDetail from "./feature/User/pages/Image/ImageDetail";
+import Video from "./feature/User/pages/Video";
+import VideoDetail from "./feature/User/pages/Video/videoDetail";
 
 function App() {
   const { userAuth } = useAuth();
@@ -22,38 +24,12 @@ function App() {
         <Route path={PATH.BASE} element={<Login />} />
         <Route path={PATH.LOGIN} element={<Login />} />
         <Route path={PATH.REGISTER} element={<Register />} />
-        <Route
-          path={PATH.IMAGE.BASE}
-          element={
-            <PrivateRoute>
-              <Image />
-            </PrivateRoute>
-          }
-        />
-        <Route
-          path={PATH.INFO}
-          element={
-            <PrivateRoute>
-              <Profile />
-            </PrivateRoute>
-          }
-        />
-        <Route
-          path={PATH.IMAGE.ADD_IMAGE}
-          element={
-            <PrivateRoute>
-              <ImageDetail />
-            </PrivateRoute>
-          }
-        />
-        <Route
-          path={PATH.IMAGE.EDIT_IMAGE}
-          element={
-            <PrivateRoute>
-              <ImageDetail />
-            </PrivateRoute>
-          }
-        />
+        <Route path={PATH.IMAGE.BASE} element={ <PrivateRoute> <Image /> </PrivateRoute> } />
+        <Route path={PATH.INFO} element={ <PrivateRoute> <Profile /> </PrivateRoute>  } />
+        <Route path={PATH.IMAGE.ADD_IMAGE} element={ <PrivateRoute> <ImageDetail /> </PrivateRoute> } />
+        <Route path={PATH.IMAGE.EDIT_IMAGE} element={ <PrivateRoute>  <ImageDetail /> </PrivateRoute> } />
+        <Route path={PATH.VIDEO.BASE} element={ <PrivateRoute> <Video /> </PrivateRoute> } />
+        <Route path={PATH.VIDEO.EDIT_VIDEO} element={ <PrivateRoute>  <VideoDetail /> </PrivateRoute> } />
         <Route path={PATH.NOT_FOUND} element={<NotFound />} />
       </Routes>
       <Spinner/>

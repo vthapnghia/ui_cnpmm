@@ -2,12 +2,14 @@ import { configureStore } from "@reduxjs/toolkit";
 import authSlice from "./feature/Authentication/authSlice";
 import profileSlice from "./feature/User/pages/Profile/profileSlice";
 import ImageSlice from "./feature/User/pages/Image/ImageDetail/ImageSlice";
+import VideoSlice from "./feature/User/pages/Video/videoDetail/videoSlice";
 
 export const store = configureStore({
   reducer: {
     auth: authSlice,
     profile: profileSlice,
     image: ImageSlice,
+    video: VideoSlice,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({

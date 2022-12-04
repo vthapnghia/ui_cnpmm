@@ -4,13 +4,19 @@ const API_URL = {
     REGISTER: "v1/login/register",
     FIRST_LOIGN: "v1/user",
     UPDATE_PROFILE: "v1/user",
-    GET_USER: "v1/user"
+    GET_USER: "v1/user",
   },
   IMAGE: {
     GET_ALL_IMAGE: "v1/images",
     GET_IMAGE_BY_ID: "v1/images/:id",
     DELETE_IMAGE: "v1/images/:id",
-    EDIT_IAMGE: ""
+    EDIT_IMAGE: "",
+  },
+  VIDEO: {
+    GET_ALL_VIDEO: "v1/videos",
+    GET_VIDEO_BY_ID: "v1/videos/:id",
+    DELETE_VIDEO: "v1/videos/:id",
+    EDIT_VIDEO: "",
   },
 };
 

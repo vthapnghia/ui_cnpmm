@@ -1,19 +1,17 @@
 import { Formik } from "formik";
 import { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate, useParams } from "react-router-dom";
-import PATH from "../../../../../contants/path";
-import "./ImageDetail.scss";
-import { getImageByID, removeImage } from "./ImageSlice";
+import { useParams } from "react-router-dom";
+import "./videoDetail.scss";
+import { getVideoByID, removeVideo } from "./videoSlice";
 
-function ImageDetail() {
+function VideoDetail() {
   const [selectedFile, setSelectedFile] = useState(null);
   const { id } = useParams();
   const [action, setAction] = useState(1);
   const formikRef = useRef();
   const dispatch = useDispatch();
-  const imgById = useSelector((state) => state.image?.imgById);
-  const navigate = useNavigate();
+  const videoById = useSelector((state) => state.video?.videoById);
 
   const handleUpload = (e) => {
     // props.handleChange();
@@ -39,24 +37,20 @@ function ImageDetail() {
     } else {
       if (action === 2) {
       } else {
-        dispatch(removeImage(id)).then((res) => {
-          if (res.payload.staus === 200) {
-            navigate(PATH.IMAGE.BASE);
-          }
-        });
+        dispatch(removeVideo(id));
       }
     }
   };
 
   useEffect(() => {
     if (id) {
-      dispatch(getImageByID(id));
+      dispatch(getVideoByID(id));
     }
   }, [id, dispatch]);
 
   return (
     <Formik
-      initialValues={{ img_upload: "", description: imgById?.description }}
+      initialValues={{ img_upload: "", description: videoById?.description }}
       innerRef={formikRef}
       enableReinitialize
       onSubmit={handleAction}
@@ -66,14 +60,9 @@ function ImageDetail() {
           <div className="container ">
             <div className="row">
               <div className="col col-md-6 col-sm-12">
-                <img
-                  className="image"
-                  src={imgById?.url}
-                  alt=""
-                  onLoad={(event) =>
-                    (event.target.style.display = "inline-block")
-                  }
-                />
+                <video controls className="video">
+                  <source src={videoById?.url} />
+                </video>
                 <input
                   name="img_upload"
                   className="img-upload"
@@ -108,7 +97,7 @@ function ImageDetail() {
                         className="update-date"
                         placeholder="Ngày tải lên"
                         disabled
-                        value={imgById?.created_date}
+                        value={videoById?.created_date}
                       />
                     </div>
                     <div className="btn-img">
@@ -130,4 +119,4 @@ function ImageDetail() {
   );
 }
 
-export default ImageDetail;
+export default VideoDetail;

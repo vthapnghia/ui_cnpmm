@@ -5,20 +5,22 @@ import { KEY_STORAGE } from "../until/global";
 const userAPI = {
   login: (data) => {
     const url = API_URL.USER.LOGIN;
-    const headers = { "Content-Type": "application/json" };
-    return doRequest("post", url, data, headers);
+    const config = {headers: { "Content-Type": "application/json" } };
+    return doRequest("post", url, data, config);
   },
   register: (data) => {
     const url = API_URL.USER.REGISTER;
-    const headers = { "Content-Type": "application/json" };
-    return doRequest("post", url, data, headers);
+    const config = {headers:{ "Content-Type": "application/json" }};
+    return doRequest("post", url, data, config);
   },
   firstLogin: (data) => {
     let formData = new FormData();
     const token = localStorage.getItem(KEY_STORAGE.ACCESS_TOKEN);
-    const headers = {
-      "Content-Type": "multipart/form-data",
-      Authorization: `Bearer ${token}`,
+    const config = {
+      headers: {
+        "Content-Type": "multipart/form-data",
+        "Authorization": `Bearer ${token}`,
+      },
     };
     formData.append("avatar", data.avatar);
     formData.append("name", data.name);
@@ -27,15 +29,17 @@ const userAPI = {
     formData.append("address", data.address);
     formData.append("phone", data.phone);
     const url = API_URL.USER.FIRST_LOIGN;
-    return doRequest("post", url, formData, headers);
+    return doRequest("post", url, formData, config);
   },
 
   updateProfile: (data) => {
     let formData = new FormData();
     const token = localStorage.getItem(KEY_STORAGE.ACCESS_TOKEN);
-    const headers = {
-      "Content-Type": "multipart/form-data",
-      Authorization: `Bearer ${token}`,
+    const config = {
+      headers: {
+        "Content-Type": "multipart/form-data",
+        "Authorization": `Bearer ${token}`,
+      },
     };
     formData.append("avatar", data.avatar);
     formData.append("name", data.name);
@@ -44,7 +48,7 @@ const userAPI = {
     formData.append("address", data.address);
     formData.append("phone", data.phone);
     const url = API_URL.USER.UPDATE_PROFILE;
-    return doRequest("put", url, formData, headers);
+    return doRequest("put", url, formData, config);
   },
   getUser: (data) => {
     const token = localStorage.getItem(KEY_STORAGE.ACCESS_TOKEN);
@@ -55,7 +59,7 @@ const userAPI = {
       },
     };
     const url = API_URL.USER.UPDATE_PROFILE;
-    return doRequest("get", url, "",config);
+    return doRequest("get", url, "", config);
   },
 };
 
