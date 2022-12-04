@@ -1,94 +1,83 @@
+import axios from "axios";
 import { Formik } from "formik";
-import { useCallback, useRef, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import * as Yup from "yup";
 import Icons from "../../../../component/Icons";
+import Input from "../../../../component/Input";
+import { KEY_STORAGE } from "../../../../until/global";
 import "./Profile.scss";
+import { firstLogin, getUser, updateProfile } from "./profileSlice";
 
 function Profile() {
-  const [password, setEye] = useState(false);
   const navigate = useNavigate();
   const formikRef = useRef();
+  const dispatch = useDispatch();
+  const user = useSelector((state) => state.profile?.user);
 
-  const handleIconPassword = useCallback(() => {
-    setEye(!password);
-  }, [password]);
+  const handleUpdate = useCallback((values) => {
+    // console.log(values);
+    if (user?._id === null) {
+      console.log(1);
+      dispatch(firstLogin(values));
+    } else {
+      console.log(2);
+      dispatch(updateProfile(values));
+    }
+  }, [dispatch, user?._id]);
 
-  const handleUpdate = (values) => {
-    console.log(values);
-  };
+  useEffect(() => {
+    dispatch(getUser());
+  }, [dispatch]);
+
   return (
     <Formik
-      initialValues={{ name: "", password: "", address: "", phone: "" }}
+      initialValues={{
+        avatar: user?.avatar || "",
+        name: user?.name  || "",
+        age: user?.age || "",
+        gender: user?.gender || "",
+        address: user?.address || "",
+        phone: user?.phone || "",
+      }}
       onSubmit={handleUpdate}
       innerRef={formikRef}
+      enableReinitialize
+      encType="multipart/form-data"
     >
-      {(props) => (
-        <div className="profile" id="profile">
-          <div className="container">
-            <div className="back" onClick={() => navigate(-1)}>
-              <Icons.ArrowLeft width={20} height={20} color="#000" />
-            </div>
-            <img
-              src="pexels-lisa-fotios-1048283.jpg"
-              alt="img"
-              className="use-img"
-              width={100}
-              height={100}
-            />
-            <h1>User name</h1>
+      <div className="profile" id="profile">
+        <div className="container">
+          <div className="back" onClick={() => navigate(-1)}>
+            <Icons.ArrowLeft width={20} height={20} color="#000" />
+          </div>
+          <div className="avatar">
+            <Input name="avatar" type="file" />
+          </div>
 
-            <div className="input">
-              <input
-                name="name"
-                className="username"
-                placeholder="User name"
-                onChange={props.handleChange}
-                onBlur={props.handleBlur}
-                value={props.values.name}
-              />
-            </div>
-            <div className="input">
-              <input
-                name="password"
-                className="password"
-                placeholder="Password"
-                type={password ? "password" : "text"}
-                onChange={props.handleChange}
-                onBlur={props.handleBlur}
-                value={props.values.password}
-              />
-              <span className="icon-eye" onClick={handleIconPassword}>
-                {password ? <Icons.EyeSlash /> : <Icons.Eye />}
-              </span>
-            </div>
-            <div className="input">
-              <input
-                name="address"
-                className="address"
-                placeholder="Address"
-                onChange={props.handleChange}
-                onBlur={props.handleBlur}
-                value={props.values.address}
-              />
-            </div>
-            <div className="input">
-              <input
-                className="phone"
-                name="phone"
-                placeholder="Phone"
-                onChange={props.handleChange}
-                onBlur={props.handleBlur}
-                value={props.values.phone}
-              />
-            </div>
-            <div className="btn-update">
-              <button onClick={() => formikRef.current.submitForm()}>
-                Cập nhật
-              </button>
-            </div>
+          <div className="input">
+            <Input name="name" placeholder="Họ và tên" type="text" />
+          </div>
+          <div className="input">
+            <Input name="age" placeholder="Tuổi" type="number" />
+          </div>
+          <div className="input">
+            <Input name="gender" placeholder="Giới tính" type="select" />
+          </div>
+          <div className="input">
+            <Input name="address" placeholder="Địa chỉ" type="text" />
+          </div>
+          <div className="input">
+            <Input name="phone" placeholder="Số điện thoại" type="number" />
+          </div>
+
+          <div className="btn-update">
+            <button onClick={() => formikRef.current.submitForm()}>
+              Cập nhật
+            </button>
           </div>
         </div>
-      )}
+      </div>
     </Formik>
   );
 }

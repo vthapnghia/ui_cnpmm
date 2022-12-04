@@ -1,8 +1,20 @@
+import { useCallback } from "react";
 import { Dropdown } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { Link, useNavigate } from "react-router-dom";
 import PATH from "../../contants/path";
+import { logout } from "../../feature/Authentication/authSlice";
 import "./Navbar.scss";
 function Navbar() {
+  const dispath = useDispatch();
+  const navigate = useNavigate();
+
+  const handleLogout = useCallback(() => {
+    dispath(logout()).then((res) => {
+      navigate(PATH.LOGIN);
+    });
+  }, [dispath,navigate]);
+  
   return (
     <div className="navbar" id="navbar">
       <Dropdown>
@@ -16,8 +28,12 @@ function Navbar() {
         </Dropdown.Toggle>
 
         <Dropdown.Menu className="w-100 mt-2">
-          <Link className="dropdown-item" to={PATH.INFO}>Thông tin</Link>
-          <Link className="dropdown-item" to={PATH.LOGIN}>Đăng xuất</Link>
+          <Link className="dropdown-item" to={PATH.INFO}>
+            Thông tin
+          </Link>
+          <div className="dropdown-item" onClick={handleLogout}>
+            Đăng xuất
+          </div>
         </Dropdown.Menu>
       </Dropdown>
     </div>

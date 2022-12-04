@@ -11,13 +11,13 @@ import PrivateRoute from "./component/PrivateRoute";
 import { useAuth } from "./until/hook";
 import Profile from "./feature/User/pages/Profile";
 import Home from "./feature/User/pages/Home";
+import Spinner from "./component/Spinner";
 
 function App() {
   const { userAuth } = useAuth();
   return (
     <div className="App">
-      {userAuth ? <Navbar /> : <></>}
-      {/* {true ? <Navbar /> : <></>} */}
+       {userAuth ? <Navbar /> : <></>}
       <Routes>
         <Route path={PATH.BASE} element={<Login />} />
         <Route path={PATH.LOGIN} element={<Login />} />
@@ -56,6 +56,7 @@ function App() {
         />
         <Route path={PATH.NOT_FOUND} element={<NotFound />} />
       </Routes>
+      <Spinner/>
     </div>
   );
 }

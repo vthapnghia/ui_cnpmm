@@ -14,7 +14,8 @@
       .input {
         position: relative;
         width: max-content;
-        margin: 10px;
+        height: 68px;
+        margin: 2px;
         input {
           height: 50px;
           width: 300px;
@@ -28,6 +29,14 @@
             background: rgba($color: #f5f3f3, $alpha: 0.3);
             border: 1px solid rgba($color: white, $alpha: 1);
           }
+        }
+
+        .message-error {
+          color: red;
+          font-size: 12px;
+        }
+        .error{
+          border: 1px solid red;
         }
       }
     }

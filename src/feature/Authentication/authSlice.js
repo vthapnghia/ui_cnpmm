@@ -12,9 +12,21 @@ const login = createAsyncThunk("LOGIN", async (param, { rejectWithValue }) => {
   }
 });
 
-const register = createAsyncThunk("REGISTER", async (param, { rejectWithValue }) => {
+const register = createAsyncThunk(
+  "REGISTER",
+  async (param, { rejectWithValue }) => {
+    try {
+      const res = await userAPI.register(param);
+      return res;
+    } catch (error) {
+      return rejectWithValue(error);
+    }
+  }
+);
+
+const logout = createAsyncThunk("LOGOUT", async (_arg, { rejectWithValue }) => {
   try {
-    const res = await userAPI.register(param);
+    const res = true;
     return res;
   } catch (error) {
     return rejectWithValue(error);
@@ -23,7 +35,6 @@ const register = createAsyncThunk("REGISTER", async (param, { rejectWithValue })
 
 const initialState = {
   user: null,
-  isAuth: false,
 };
 
 const authSlice = createSlice({
@@ -37,12 +48,14 @@ const authSlice = createSlice({
       localStorage.setItem(KEY_STORAGE.ACCESS_TOKEN, res.token);
       storeJsonObject(KEY_STORAGE.CP_USER, res?.user);
     },
-    [register.fulfilled]: (state, action) => {
-
-    }
+    [register.fulfilled]: (state, action) => {},
+    [logout.pending]: (state) => {
+      state.user = null;
+      localStorage.clear();
+    },
   },
 });
 
 const { reducer } = authSlice;
-export { login, register };
+export { login, register, logout };
 export default reducer;

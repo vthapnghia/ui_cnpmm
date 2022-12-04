@@ -6,7 +6,11 @@ import ImageSlice from "./feature/User/pages/ImageDetail/ImageSlice";
 export const store = configureStore({
   reducer: {
     auth: authSlice,
-    profileSlice: profileSlice,
+    profile: profileSlice,
     image: ImageSlice,
   },
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware({
+      serializableCheck: false,
+    }),
 });

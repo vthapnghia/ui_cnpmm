@@ -8,9 +8,6 @@ function PrivateRoute({ children, ...rest }) {
   if (!auth.userAuth) {
     return <Navigate to="/login" state={{ from: location }} />;
   }
-  // if (!true) {
-  //   return <Navigate to="/login" state={{ from: location }} />;
-  // }
   return children;
 }
 

@@ -1,0 +1,58 @@
+.input-common {
+  position: relative;
+  width: 100%;
+  min-height: 68px;
+  margin: 2px;
+
+  img {
+    border-radius: 100%;
+    object-fit: cover;
+    border: 1px solid #f5f3f3;
+    object-fit: cover;
+    border-radius: 100%;
+  }
+
+  .label-img {
+    background-color: indigo;
+    color: white;
+    padding: 0.5rem;
+    font-family: sans-serif;
+    border-radius: 0.3rem;
+    cursor: pointer;
+    margin-top: 1rem;
+  }
+  input {
+    height: 50px;
+    &::-webkit-outer-spin-button,
+    &::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+  }
+
+  .icon-eye {
+    position: fixed;
+    top: 38%;
+  }
+  input {
+    width: 100%;
+    border: 1px solid rgba($color: white, $alpha: 0.5);
+    outline: none;
+    border-radius: 10px;
+    padding: 2px 30px;
+    background: transparent;
+
+    &:hover {
+      background: rgba($color: #f5f3f3, $alpha: 0.3);
+      border: 1px solid rgba($color: white, $alpha: 1);
+    }
+  }
+
+  .message-error {
+    color: red;
+    font-size: 12px;
+  }
+  .error {
+    border: 1px solid red;
+  }
+}

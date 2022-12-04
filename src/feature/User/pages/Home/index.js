@@ -1,11 +1,20 @@
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import PATH from "../../../../contants/path";
+import { getImage } from "../ImageDetail/ImageSlice";
 import "./Home.scss";
 
 const arr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
 function Home() {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const image = useSelector((state) => state.imageSlice?.image);
+
+  useEffect(() => {
+    dispatch(getImage()).then(res => console.log(res));
+  }, [dispatch]);
   return (
     <div className="home" id="home">
       <div className="container d-flex flex-column">
@@ -31,7 +40,9 @@ function Home() {
                 ></img>
                 <button
                   className="btn-detail"
-                  onClick={() => navigate(PATH.IMAGE.EDIT_IMAGE.replace(":id", 1))}
+                  onClick={() =>
+                    navigate(PATH.IMAGE.EDIT_IMAGE.replace(":id", 1))
+                  }
                 >
                   Chi tiết
                 </button>

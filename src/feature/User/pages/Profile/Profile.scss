@@ -16,48 +16,31 @@
       top: 0;
       left: 0;
     }
-    .use-img {
-      border-radius: 100%;
-      object-fit: cover;
-      margin-top: 50px;
+
+    .avatar {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin: 5px;
+      width: max-content;
+      height: max-content;
     }
 
     .input {
       position: relative;
       width: max-content;
-      margin: 10px;
-      input {
-        height: 50px;
-        width: 300px;
-        border: 1px solid rgba($color: white, $alpha: 0.5);
-        outline: none;
-        border-radius: 10px;
-        padding: 2px 30px;
-        background: transparent;
-
-        &:hover {
-          background: rgba($color: #f5f3f3, $alpha: 0.3);
-          border: 1px solid rgba($color: white, $alpha: 1);
-        }
-      }
-
-      .icon-eye {
-        position: absolute;
-        top: 50%;
-        right: 10px;
-        transform: translate(0, -50%);
-      }
+      width: 300px;
     }
 
     .btn-update {
-        button {
-          width: 300px;
-          height: 50px;
-          border-radius: 10px;
-          border: none;
-          background-color: #fbceb5;
-          font-weight: 600;
-        }
+      button {
+        width: 300px;
+        height: 50px;
+        border-radius: 10px;
+        border: none;
+        background-color: #fbceb5;
+        font-weight: 600;
       }
+    }
   }
 }

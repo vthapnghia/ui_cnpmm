@@ -9,7 +9,7 @@ const useAuth = () => {
     const localUser = getJsonObject(KEY_STORAGE.CP_USER);
     userAuth = localUser || null;
   } else {
-    userAuth = userAuth || null;
+    userAuth = user || null;
   }
   return { userAuth };
 };

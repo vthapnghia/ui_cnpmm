@@ -1,18 +1,20 @@
 import { Formik } from "formik";
-import { useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import "./ImageDetail.scss";
+import { getImage } from "./ImageSlice";
 
 function ImageDetail() {
   const [selectedFile, setSelectedFile] = useState(null);
   const { id } = useParams();
   const [action, setAction] = useState(1);
   const formikRef = useRef();
-
+  const dispath = useDispatch();
   const handleUpload = (e) => {
+    // props.handleChange();
     setSelectedFile(URL.createObjectURL(e.target.files[0]));
   };
-  console.log(selectedFile);
 
   const handleEdit = () => {
     setAction(2);
@@ -28,17 +30,15 @@ function ImageDetail() {
     formikRef.current.submitForm();
   };
 
-  const handleAction = () => {
-    if(action === 1){
-     
-    } else{
-        if(action === 2){
-         
-        } else{
-          
-        }
+  const handleAction = (values) => {
+    if (action === 1) {
+    } else {
+      if (action === 2) {
+      } else {
       }
-  }
+    }
+  };
+
   return (
     <Formik
       initialValues={{ img_upload: "", description: "" }}
