@@ -8,13 +8,18 @@ const userAPI = {
     const config = {headers: { "Content-Type": "application/json" } };
     return doRequest("post", url, data, config);
   },
+  loginGoogle: (data) => {
+    const url = API_URL.USER.LOGIN_GOOGLE;
+    const config = {headers: { "Content-Type": "application/json" } };
+    return doRequest("post", url, data, config);
+  },
   register: (data) => {
     const url = API_URL.USER.REGISTER;
     const config = {headers:{ "Content-Type": "application/json" }};
     return doRequest("post", url, data, config);
   },
   firstLogin: (data) => {
-    let formData = new FormData();
+    const formData = new FormData();
     const token = localStorage.getItem(KEY_STORAGE.ACCESS_TOKEN);
     const config = {
       headers: {
@@ -33,7 +38,7 @@ const userAPI = {
   },
 
   updateProfile: (data) => {
-    let formData = new FormData();
+    const formData = new FormData();
     const token = localStorage.getItem(KEY_STORAGE.ACCESS_TOKEN);
     const config = {
       headers: {

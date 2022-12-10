@@ -12,38 +12,11 @@
     .form-input {
       width: 500px;
       .input {
-        position: relative;
-        width: max-content;
-        height: 68px;
-        margin: 2px;
         input {
           height: 50px;
           width: 300px;
-          border: 1px solid rgba($color: white, $alpha: 0.5);
-          outline: none;
-          border-radius: 10px;
-          padding: 2px 30px;
-          background: transparent;
-
-          &:hover {
-            background: rgba($color: #f5f3f3, $alpha: 0.3);
-            border: 1px solid rgba($color: white, $alpha: 1);
-          }
-        }
-        .message-error {
-          color: red;
-          font-size: 12px;
-        }
-        .error{
-          border: 1px solid red;
         }
       }
-    }
-    .icon-eye {
-      position: absolute;
-      top: 38%;
-      right: 10px;
-      transform: translate(0, -50%);
     }
 
     .button-sign-in {

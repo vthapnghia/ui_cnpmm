@@ -1,11 +1,11 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import videoAPI from "../../../../../API/videoAPI";
+import videoAPI from "../../../../API/videoAPI";
 
 const addVideo = createAsyncThunk(
   "ADD_VIDEO",
   async (param, { rejectWithValue }) => {
     try {
-      const res = videoAPI.addVideo();
+      const res = videoAPI.addVideo(param);
       return res;
     } catch (error) {
       rejectWithValue(error);

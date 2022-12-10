@@ -1,11 +1,11 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import imageAPI from "../../../../../API/imageAPI";
+import imageAPI from "../../../../API/imageAPI";
 
 const addImage = createAsyncThunk(
   "ADD_IMAGE",
   async (param, { rejectWithValue }) => {
     try {
-      const res = imageAPI.addImage();
+      const res = imageAPI.addImage(param);
       return res;
     } catch (error) {
       rejectWithValue(error);

@@ -12,6 +12,15 @@ const login = createAsyncThunk("LOGIN", async (param, { rejectWithValue }) => {
   }
 });
 
+const loginGoogle = createAsyncThunk("LOGIN_GOOGLE", async (param, { rejectWithValue }) => {
+  try {
+    const res = await userAPI.loginGoogle(param);
+    return res;
+  } catch (error) {
+    return rejectWithValue(error);
+  }
+});
+
 const register = createAsyncThunk(
   "REGISTER",
   async (param, { rejectWithValue }) => {
@@ -52,9 +61,15 @@ const authSlice = createSlice({
       state.user = null;
       localStorage.clear();
     },
+    [loginGoogle.fulfilled]: (state, action) => {
+      const res = action.payload.data;
+      state.user = res?.user;
+      localStorage.setItem(KEY_STORAGE.ACCESS_TOKEN, res?.token);
+      storeJsonObject(KEY_STORAGE.CP_USER, res?.user);
+    },
   },
 });
 
 const { reducer } = authSlice;
-export { login, register, logout };
+export { login, register, logout, loginGoogle };
 export default reducer;

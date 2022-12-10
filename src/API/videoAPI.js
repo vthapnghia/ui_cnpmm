@@ -1,13 +1,24 @@
-import axiosClient from "../axiosClient";
 import API_URL from "../contants/api";
 import { doRequest } from "../until/common";
 import { KEY_STORAGE } from "../until/global";
 
 const videoAPI = {
   addVideo: (data) => {
-    // const token = localStorage.getItem(KEY_STORAGE.ACCESS_TOKEN);
-    const url = API_URL;
-    return axiosClient.push(url, data);
+    const token = localStorage.getItem(KEY_STORAGE.ACCESS_TOKEN);
+    const config = {
+      headers: {
+        "Content-Type": "multipart/form-data",
+        "Authorization": `Bearer ${token}`,
+      },
+    };
+    const formData = new FormData();
+    const url = API_URL.VIDEO.ADD_VIDEO;
+    const files = Object.values(data);
+    files.forEach((elmennt) => {
+      formData.append("videos", elmennt);
+    });
+    formData.append("descriptions", null);
+    return doRequest("post", url, formData, config);
   },
   editVideo: (param) => {
     const { data, id } = param;

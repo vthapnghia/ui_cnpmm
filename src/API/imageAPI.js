@@ -1,4 +1,3 @@
-import axiosClient from "../axiosClient";
 import API_URL from "../contants/api";
 import { doRequest } from "../until/common";
 import { KEY_STORAGE } from "../until/global";
@@ -6,8 +5,21 @@ import { KEY_STORAGE } from "../until/global";
 const imageAPI = {
   addImage: (data) => {
     const token = localStorage.getItem(KEY_STORAGE.ACCESS_TOKEN);
-    const url = API_URL;
-    return axiosClient.push(url, data);
+    const config = {
+      headers: {
+        "Content-Type": "multipart/form-data",
+        Authorization: `Bearer ${token}`,
+      },
+    };
+    const formData = new FormData();
+    const url = API_URL.IMAGE.ADD_IMAGE;
+    const files = Object.values(data);
+    files.forEach((elmennt) => {
+      formData.append("images", elmennt);
+    });
+  
+    formData.append("descriptions", null);
+    return doRequest("post", url, formData, config);
   },
   editImage: (param) => {
     const { data, id } = param;
@@ -16,7 +28,7 @@ const imageAPI = {
     const config = {
       headers: {
         "Content-Type": "multipart/form-data",
-        "Authorization": `Bearer ${token}`,
+        Authorization: `Bearer ${token}`,
       },
     };
     formData.append("image", data.image);
@@ -29,7 +41,7 @@ const imageAPI = {
     const config = {
       headers: {
         "Content-Type": "application/json",
-        "Authorization": `Bearer ${token}`,
+        Authorization: `Bearer ${token}`,
       },
     };
     const url = API_URL.IMAGE.DELETE_IMAGE.replace(":id", data);
@@ -41,7 +53,7 @@ const imageAPI = {
     const config = {
       headers: {
         "Content-Type": "application/json",
-        "Authorization": `Bearer ${token}`,
+        Authorization: `Bearer ${token}`,
       },
     };
     return doRequest("get", url, "", config);
@@ -52,7 +64,7 @@ const imageAPI = {
     const config = {
       headers: {
         "Content-Type": "application/json",
-        "Authorization": `Bearer ${token}`,
+        Authorization: `Bearer ${token}`,
       },
     };
     const url = API_URL.IMAGE.GET_IMAGE_BY_ID.replace(":id", data);

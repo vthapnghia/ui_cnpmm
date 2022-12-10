@@ -13,6 +13,7 @@ function Input({
   placeholder,
   style,
   label,
+  accept,
   ...props
 }) {
   const [password, setEye] = useState(false);
@@ -36,7 +37,7 @@ function Input({
     }),
     control: (styles) => ({
       ...styles,
-      backgroundColor: "transparent",
+      backgroundColor: "white",
       boxShadow: "rgba(0, 0, 0, 0.35) 0px 5px 15px",
       width: "100%",
       borderRadius: "10px",
@@ -48,13 +49,12 @@ function Input({
       ":hover": {
         ...styles[":hover"],
         background: "white",
-        opacity: "0.3",
       },
     }),
     option: (styles) => {
       return {
         ...styles,
-        backgroundColor: "transparent",
+        backgroundColor: "white",
         color: "black",
         ":active": {
           ...styles[":active"],
@@ -79,7 +79,6 @@ function Input({
       width: "100%",
       position: "absolute",
       background: "white",
-      opacity: 0.9,
     }),
     singleValue: (styles) => ({
       ...styles,
@@ -181,6 +180,7 @@ function Input({
           <input
             id="file"
             type="file"
+            accept={accept}
             onChange={(e) => {
               const fileReader = new FileReader();
               fileReader.onload = () => {
@@ -191,7 +191,6 @@ function Input({
               fileReader.readAsDataURL(e.target.files[0]);
               setFieldValue(props.name, e.target.files[0]);
             }}
-            className={className}
             style={style}
             hidden
           />
