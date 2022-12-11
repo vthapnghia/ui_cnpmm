@@ -94,6 +94,16 @@ function Input({
     [helpers]
   );
 
+  function containsNumbers(str) {
+    return /^[0-9]+$/.test(str);
+  }
+
+  const onKeyDown = useCallback((e) => {
+    if (!containsNumbers(e.key) && e.key !== "Backspace") {
+      e.preventDefault();
+    }
+  }, []);
+
   useEffect(() => {
     if (type === "select") {
       const selected = GENDER.find((option) => field.value === option.value);
@@ -163,13 +173,14 @@ function Input({
             meta.error && meta.touched ? "error" : ""
           } `}
           placeholder={placeholder}
-          type="number"
+          type="text"
           disabled={disabled}
           value={temp}
           style={style}
+          onKeyDown={onKeyDown}
         />
       ) : type === "file" ? (
-        <div style={{ display: "flex", flexDirection: "column" }}>
+        <div style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
           <img
             src={temp}
             alt="img"

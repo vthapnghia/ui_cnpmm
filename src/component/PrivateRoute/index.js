@@ -1,4 +1,5 @@
 import { Navigate, useLocation } from "react-router-dom";
+import PATH from "../../contants/path";
 import { useAuth } from "../../until/hook";
 
 function PrivateRoute({ children, ...rest }) {
@@ -8,7 +9,7 @@ function PrivateRoute({ children, ...rest }) {
   if (!auth.userAuth) {
     return (
       <>
-        <Navigate to="/login" state={{ from: location }} />;
+        <Navigate to={PATH.LOGIN} state={{ from: location }} />;
       </>
     );
   }

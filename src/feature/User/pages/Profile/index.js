@@ -1,10 +1,11 @@
 import { Formik } from "formik";
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Input from "../../../../component/Input";
 import ModalCommon from "../../../../component/ModalCommon";
 import "./Profile.scss";
 import { firstLogin, getUser, updateProfile } from "./profileSlice";
+import * as Yup from "yup";
 
 function Profile() {
   const formikRef = useRef();
@@ -49,6 +50,17 @@ function Profile() {
     setShow(!show);
   }, [show]);
 
+  const validationSchema = useMemo(() => {
+    return {
+      avatar: Yup.string().required("Vui lòng chọn ảnh đại diện"),
+      name: Yup.string().required("Vui lòng nhập tên"),
+      age: Yup.string().required("Vui lòng nhập tuổi"),
+      gender: Yup.string().required("Vui lòng chọn giới tính"),
+      address: Yup.string().required("Vui lòng nhập địa chỉ"),
+      phone: Yup.string().required("Vui lòng nhập số điện thoại"),
+    };
+  }, []);
+
   useEffect(() => {
     dispatch(getUser());
   }, [dispatch]);
@@ -65,6 +77,7 @@ function Profile() {
       }}
       onSubmit={handleUpdate}
       innerRef={formikRef}
+      validationSchema={Yup.object(validationSchema)}
       enableReinitialize
       encType="multipart/form-data"
     >

@@ -2,7 +2,7 @@ const PATH = {
   LOGIN: "/login",
   REGISTER: "/register",
   HOME: "/home",
-  NOT_FOUND: "*",
+  NOT_FOUND: "/*",
   BASE: "/",
   INFO: "/info",
   IMAGE: {

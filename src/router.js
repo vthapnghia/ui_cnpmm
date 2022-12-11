@@ -14,10 +14,6 @@ const router = [
         path: PATH.IMAGE.BASE,
         component: Image,
     },
-    // {
-    //     path: PATH.IMAGE.ADD_IMAGE,
-    //     component: ImageDetail,
-    // },
     {
         path: PATH.IMAGE.EDIT_IMAGE,
         component: ImageDetail,
