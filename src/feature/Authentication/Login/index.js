@@ -138,6 +138,7 @@ function Login() {
             modalBody={modalBody}
             isButton
             handleClose={handleClose}
+            handleCloseModal={() => setShow(!show)}
           />
         </>
       )}

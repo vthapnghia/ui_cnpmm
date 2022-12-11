@@ -162,6 +162,7 @@ function VideoDetail() {
           modalBody="Bạn có muốn xóa mục này"
           isButton
           handleClose={handleClose}
+          handleCloseModal={() => setShow(!show)}
         />
         <ModalCommon
           show={showMessage}
@@ -169,6 +170,7 @@ function VideoDetail() {
           modalBody={modalBody}
           isButton
           handleClose={handleCloseMessage}
+          handleCloseModal={() => setShowMessage(!showMessage)}
         />
       </>
     </Formik>

@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import BackToTop from "../../../../component/BackToTop";
 import ModalCommon from "../../../../component/ModalCommon";
 import PATH from "../../../../contants/path";
 import "./Video.scss";
@@ -96,6 +97,7 @@ function Video() {
         modalBody={modalBodyAdd}
         isButton
         handleClose={handleClose}
+        handleCloseModal={() => setShow(!show)}
         labelButton="Lưu"
       />
       <ModalCommon
@@ -103,8 +105,10 @@ function Video() {
         modalTitle={modalTitle}
         modalBody={modalBody}
         handleClose={handleCloseMessage}
+        handleCloseModal={() => setShowMessage(!showMessage)}
         isButton
       />
+      <BackToTop id="video"/>
     </div>
   );
 }

@@ -23,16 +23,11 @@ function ImageDetail() {
   const [status, setStatus] = useState(null);
 
   const handleEdit = () => {
-    setAction(2);
+    setAction(1);
     formikRef.current.submitForm();
   };
   const handleRemove = () => {
-    setAction(3);
-    formikRef.current.submitForm();
-  };
-
-  const handleSave = () => {
-    setAction(1);
+    setAction(2);
     formikRef.current.submitForm();
   };
 
@@ -131,26 +126,18 @@ function ImageDetail() {
                     type="textarea"
                   />
                 </div>
-                {id ? (
-                  <>
-                    <div className="input">
-                      <input
-                        className="update-date"
-                        placeholder="Ngày tải lên"
-                        disabled
-                        value={img?.created_date}
-                      />
-                    </div>
-                    <div className="btn-img">
-                      <button onClick={handleEdit}>Chỉnh sửa</button>
-                      <button onClick={handleRemove}>Xóa</button>
-                    </div>
-                  </>
-                ) : (
-                  <div className="btn-img">
-                    <button onClick={handleSave}>Save</button>
-                  </div>
-                )}
+                <div className="input">
+                  <input
+                    className="update-date"
+                    placeholder="Ngày tải lên"
+                    disabled
+                    value={img?.created_date}
+                  />
+                </div>
+                <div className="btn-img">
+                  <button onClick={handleEdit}>Chỉnh sửa</button>
+                  <button onClick={handleRemove}>Xóa</button>
+                </div>
               </div>
             </div>
           </div>
@@ -161,6 +148,7 @@ function ImageDetail() {
           modalBody="Bạn có muốn xóa mục này"
           isButton
           handleClose={handleClose}
+          handleCloseModal={() => setShow(!show)}
         />
         <ModalCommon
           show={showMessage}
@@ -168,6 +156,7 @@ function ImageDetail() {
           modalBody={modalBody}
           isButton
           handleClose={handleCloseMessage}
+          handleCloseModal={() => setShowMessage(!showMessage)}
         />
       </>
     </Formik>

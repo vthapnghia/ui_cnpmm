@@ -94,6 +94,7 @@ function Register() {
           modalBody={modalBody}
           isButton
           handleClose={handleClose}
+          handleCloseModal={() => setShow(!show)}
         />
       </>
     </Formik>

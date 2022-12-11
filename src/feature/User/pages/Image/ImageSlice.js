@@ -74,10 +74,10 @@ const ImageSlice = createSlice({
     [editImage.fulfilled]: (state, action) => {},
     [removeImage.fulfilled]: (state, action) => {},
     [getImage.fulfilled]: (state, action) => {
-      state.image = action.payload.data;
+      state.image = action.payload?.data;
     },
     [getImageByID.fulfilled]: (state, action) => {
-      state.imgById = action.payload.data;
+      state.imgById = action.payload?.data;
     },
   },
 });

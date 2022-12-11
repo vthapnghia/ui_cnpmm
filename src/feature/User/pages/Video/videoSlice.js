@@ -74,10 +74,10 @@ const VideoSlice = createSlice({
     [editVideo.fulfilled]: (state, action) => {},
     [removeVideo.fulfilled]: (state, action) => {},
     [getVideo.fulfilled]: (state, action) => {
-      state.video = action.payload.data;
+      state.video = action.payload?.data;
     },
     [getVideoByID.fulfilled]: (state, action) => {
-      state.videoById = action.payload.data;
+      state.videoById = action.payload?.data;
     },
   },
 });

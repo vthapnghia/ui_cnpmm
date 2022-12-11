@@ -1,6 +1,7 @@
 .modal-dialog {
-    top: 50%;
-    transform: translate(0, -50%)!important;
+  top: 50%;
+  transform: translate(0, -50%) !important;
+  position: relative;
   .modal-content {
     padding: 20px;
     border: none !important;
@@ -14,5 +15,13 @@
         min-width: 150px;
       }
     }
+  }
+  .close-btn {
+    position: absolute;
+    top: -30px;
+    right: 0;
+    font-weight: 600;
+    font-size: 20px;
+    cursor: pointer;
   }
 }

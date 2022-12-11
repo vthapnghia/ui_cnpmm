@@ -8,6 +8,7 @@ function ModalCommon({
   isButton,
   handleClose,
   labelButton,
+  handleCloseModal,
   ...props
 }) {
   return (
@@ -23,6 +24,7 @@ function ModalCommon({
           )}
         </div>
       </div>
+      <div className="close-btn" onClick={handleCloseModal}>x</div>
     </Modal>
   );
 }
