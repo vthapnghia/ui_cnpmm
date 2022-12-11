@@ -12,5 +12,5 @@ API đã hoàn thành:
 
 Cách chạy chương trình:
 - Vào link git BE pull về mở terminal chạy npm install -> npm start
-- Vào link git FE pull về mở mở git bash trong terminal -> Chạy lệnh npm i --global yarn -> Chạy lệnh yarn start
+- Vào link git FE pull về mở mở git bash trong terminal -> Chạy lệnh npm i --global yarn -> Chạy lệnh yarn -> yarn start
 - Truy cập trình duyệt http://localhost:3000

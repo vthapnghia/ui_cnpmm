@@ -1,9 +1,9 @@
 #video {
-  min-height: 100vh;
+  height: 100vh;
   background-image: url("../../../../../public/bg.jpg");
   background-size: cover;
-  // overflow: hidden;
-  // overflow-y: auto;
+  overflow: hidden;
+  overflow-y: auto;
   padding-top: 92px;
   padding-bottom: 100px;
   .container {
