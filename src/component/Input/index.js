@@ -125,7 +125,7 @@ function Input({
             } `}
             type={password ? "text" : "password"}
             disabled={disabled}
-            value={temp}
+            // value={temp}
             style={style}
             placeholder={placeholder}
           />
@@ -143,7 +143,7 @@ function Input({
           placeholder={placeholder}
           type={type}
           disabled={disabled}
-          value={temp}
+          // value={temp}
           style={style}
         />
       ) : type === "select" ? (
@@ -175,7 +175,7 @@ function Input({
           placeholder={placeholder}
           type="text"
           disabled={disabled}
-          value={temp}
+          // value={temp}
           style={style}
           onKeyDown={onKeyDown}
         />
@@ -213,7 +213,7 @@ function Input({
         <textarea
           {...props}
           {...field}
-          value={temp}
+          // value={temp}
           className={`${className} ${
             meta.error && meta.touched ? "error" : ""
           } `}
